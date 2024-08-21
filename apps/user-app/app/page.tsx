@@ -1,11 +1,12 @@
-import Image from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client"
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Appbar } from "@repo/ui/appbar";
 
-export default function Home() {
+export default function Page(): JSX.Element {
+  const session = useSession();
   return (
-   <div className="bg-slate-900 text-white p-3 m-3 text-slate-400">
-    Paytm APp
+   <div>
+      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
    </div>
   );
 }
